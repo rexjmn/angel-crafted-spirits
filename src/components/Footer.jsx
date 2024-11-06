@@ -16,18 +16,12 @@ const Footer = () => {
       {/* Logo Section */}
       <div className="flex items-center">
         <Link to="/">
-          <img src={Angel} alt="logo" width={110} />
+          <img src={Angel} alt="logo" width={130} />
         </Link>
       </div>
 
       {/* Navigation Links */}
-      <div className="flex items-center">
-        <ul className="flex space-x-12 text-lg font-[Rye]">
-          <li className="hover:text-gray-400 cursor-pointer transition-colors duration-300">Home</li>
-          <li className="hover:text-gray-400 cursor-pointer transition-colors duration-300">About</li>
-          <li className="hover:text-gray-400 cursor-pointer transition-colors duration-300">Contact</li>
-        </ul>
-      </div>
+     
 
       {/* Copyright */}
       <div className="text-sm font-light">

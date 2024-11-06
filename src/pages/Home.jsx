@@ -7,6 +7,7 @@ import Bottles  from '../components/Bottles'
 import ErrorBoundary from '../components/ErrorBoundary'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
+import FlipCards from '../components/FlipCards'
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <ErrorBoundary>
       <Bottles/> 
       </ErrorBoundary>
+      {/* <FlipCards /> */}
       
       <Newsletter />
 
