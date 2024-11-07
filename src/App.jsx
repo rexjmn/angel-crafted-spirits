@@ -11,7 +11,7 @@ function App() {
     // Simula un tiempo de carga al iniciar o cambiar la ruta
     const timer = setTimeout(() => {
       setLoading(false)
-    }, 4000) // Ajusta según la duración de la animación
+    }, 6000) // Ajusta según la duración de la animación
 
     return () => clearTimeout(timer)
   }, [])

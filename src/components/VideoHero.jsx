@@ -71,7 +71,7 @@ const VideoHero = () => {
   }, []);
 
   return (
-<div className="relative nav-height w-full">
+<div className="relative h-screen w-full">
   <div className="h-full  w-full flex flex-col items-center justify-center relative  z-10">
     <div className="flex items-center justify-center w-full h-full">
       {/* Contenedor del texto */}
@@ -85,7 +85,7 @@ const VideoHero = () => {
       <div id='canvas' className=" absolute w-full h-full top-0 flex items-center justify-center">
         <Canvas className="  w-full h-full z-10">
           <ambientLight intensity={4} />
-          <directionalLight position={[100, -50, 5]} intensity={10} />
+          <directionalLight position={[100, -50, 5]} intensity={20} />
           <Satyr position={[0, -9.5, -1]} scale={6.7} /> {/* Aumentamos la escala */}
           <OrbitControls enableZoom={false} autoRotate={true} autoRotateSpeed={0.5} />
         </Canvas>
@@ -106,7 +106,7 @@ const VideoHero = () => {
     muted
     loop
     playsInline
-    className="absolute top-0 right-4 w-full nav-height object-cover z-0"
+    className="absolute top-0 right-0 w-full h-full object-cover z-0"
   >
     <source src={videoSrc} type="video/mp4" />
     Your browser does not support the video tag.

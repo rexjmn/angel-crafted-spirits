@@ -10,4 +10,5 @@ import replayImg from './replay.svg';
 import rightImg from './right.svg';
 import watchImg from './watch.svg';
 import Newsletter from './newsletter-bg.png';
-export { Angel, AngelBlack, heroVideo, smallHeroVideo,  SatyrScene, playImg, pauseImg, replayImg, rightImg, watchImg, Newsletter};
+import MartiniScene from './martini.glb';
+export { Angel, AngelBlack, heroVideo, smallHeroVideo,  SatyrScene, playImg, pauseImg, replayImg, rightImg, watchImg, Newsletter, MartiniScene };
