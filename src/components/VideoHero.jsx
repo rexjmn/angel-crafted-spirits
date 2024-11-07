@@ -75,7 +75,7 @@ const VideoHero = () => {
   <div className="h-full  w-full flex flex-col items-center justify-center relative  z-10">
     <div className="flex items-center justify-center w-full h-full">
       {/* Contenedor del texto */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2  -translate-y-1/2 z-20">
         <p id="hero" className="text-white text-center text-5xl font-bold font-[Rye]">
           Elevating Spirits, <br /> Crafting Experience
         </p>
@@ -87,7 +87,9 @@ const VideoHero = () => {
           <ambientLight intensity={4} />
           <directionalLight position={[100, -50, 5]} intensity={20} />
           <Satyr position={[0, -9.5, -1]} scale={6.7} /> {/* Aumentamos la escala */}
-          <OrbitControls enableZoom={false} autoRotate={true} autoRotateSpeed={0.5} />
+          <OrbitControls enableZoom={false} autoRotate={true} autoRotateSpeed={0.5} 
+          maxPolarAngle={Math.PI / 2} // Límite superior de rotación vertical
+          minPolarAngle={Math.PI / 2} />
         </Canvas>
       </div>
     </div>
