@@ -5,7 +5,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BottleJack from '../models3D/BottleJack';
-
+import Martini from '../models3D/Martini';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,12 +129,15 @@ const Bottles = ({ sectionId, ...props }) => {
           <div className="w-full h-full absolute top-0 left-0">
             <Canvas
               className="w-full h-full"
-              camera={{ position: [0, 0, 10], fov: 50 }}
+              camera={{ position: [0, 5, 10], fov: 50 }}
             >
-              <ambientLight intensity={10} />
-              <directionalLight position={[10, 0, 0]} intensity={20} />
-              <BottleJack scale={2}  position={[0, -3.5, 0]} sectionId={SECTION_ID} />
+              <ambientLight intensity={5} />
+              <directionalLight position={[10, -10, 0]} intensity={20} />
+              <Martini scale={0.3}  position={[0, 1, 0]} sectionId={SECTION_ID} />
               <OrbitControls
+              autoRotate={true}
+              autoRotateSpeed={10}
+      
                 enableZoom={false}
                 enablePan={false}
                 maxPolarAngle={Math.PI / 2}
