@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Glassy from '../assets/images/Glassy.mp4';
+import Glassy from '../assets/images/glassy.mp4';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
