@@ -5,7 +5,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BottleJack from '../models3D/BottleJack';
-import Martini from '../models3D/Martini';
+import BottlesMobile from './BottlesMobile';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,19 +37,7 @@ const Bottles = ({ sectionId, ...props }) => {
         }
       };
 
-      const handleTouchEnd = (e) => {
-        e.preventDefault();
-      };
-
-      wrapperElement.addEventListener('touchstart', handleTouchStart);
-      wrapperElement.addEventListener('touchmove', handleTouchMove);
-      wrapperElement.addEventListener('touchend', handleTouchEnd);
-
-      return () => {
-        wrapperElement.removeEventListener('touchstart', handleTouchStart);
-        wrapperElement.removeEventListener('touchmove', handleTouchMove);
-        wrapperElement.removeEventListener('touchend', handleTouchEnd);
-      };
+      
     }
   }, []);
 
@@ -122,59 +110,9 @@ const Bottles = ({ sectionId, ...props }) => {
 
   // Versión móvil con secciones estáticas
   if (isMobileDevice()) {
-    return (
-      <div className="relative w-full min-h-screen">
-        <div className="h-screen relative">
-          {/* Canvas container for mobile */}
-          <div className="w-full h-full absolute top-0 left-0">
-            <Canvas
-              className="w-full h-full"
-              camera={{ position: [0, 5, 10], fov: 50 }}
-            >
-              <ambientLight intensity={5} />
-              <directionalLight position={[10, -10, 0]} intensity={20} />
-              <Martini scale={0.3}  position={[0, 1, 0]} sectionId={SECTION_ID} />
-              <OrbitControls
-              autoRotate={true}
-              autoRotateSpeed={10}
-      
-                enableZoom={false}
-                enablePan={false}
-                maxPolarAngle={Math.PI / 2}
-                minPolarAngle={Math.PI / 3}
-              />
-              <Preload />
-            </Canvas>
-          </div>
-          
-          {/* Title overlay */}
-          <div className="absolute top-1/2 left-0-full h-[200px] p-6 text-center bg-black/10 backdrop-blur-md rounded-lg ">
-            <h1 className="text-4xl font-bold text- text-[#e1c340] font-serif">
-              Best cocktail bartender in Los Angeles
-            </h1>
-          </div>
-        </div>
-
-        {/* Content sections */}
-        <div className="w-full px-4 py-8 space-y-8 bg-gradient-to-b from-[#292929] to-black">
-          <div className="max-w-md mx-auto p-6 bg-black/10 backdrop-blur-md rounded-lg">
-            <h2 className="text-3xl font-serif text-[#e1c340] font-bold mb-4">Event Bartending</h2>
-            <p className="text-xl font-bold">Our event bartending service brings skilled bartenders and quality cocktails to weddings, corporate events, and private parties.</p>
-          </div>
-          
-          <div className="max-w-md mx-auto p-6 bg-black/10 backdrop-blur-md rounded-lg">
-            <h2 className="text-3xl font-serif text-[#e1c340] font-bold mb-4">Cocktail Catering</h2>
-            <p className="text-xl font-bold">Our cocktail catering service provides tailored drink menus for weddings, parties, and corporate gatherings.</p>
-          </div>
-          
-          <div className="max-w-md mx-auto p-6 bg-black/10 backdrop-blur-md rounded-lg">
-            <h2 className="text-3xl font-serif text-[#e1c340] font-bold mb-4">Private Bartender Services</h2>
-            <p className="text-xl font-bold">Hire our private bartender services for an exclusive, personalized bar experience at your home or private event.</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+    return isMobileDevice() ? <BottlesMobile {...props} />
+      : null;
+  };
 
   // Versión desktop con animaciones
   return (

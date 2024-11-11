@@ -11,4 +11,7 @@ import rightImg from './right.svg';
 import watchImg from './watch.svg';
 import Newsletter from './newsletter-bg.png';
 import MartiniScene from './martini.glb';
-export { Angel, AngelBlack, heroVideo, smallHeroVideo,  SatyrScene, playImg, pauseImg, replayImg, rightImg, watchImg, Newsletter, MartiniScene };
+import heroEvents from './heroEvents.mp4';
+import burgerbars from './burger.png';
+
+export { Angel, AngelBlack, heroVideo, smallHeroVideo,  SatyrScene, playImg, pauseImg, replayImg, rightImg, watchImg, Newsletter, MartiniScene, burgerbars, heroEvents };

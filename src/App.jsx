@@ -1,34 +1,25 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home.jsx'
-import Loader from './components/Loader.jsx' // Asegúrate de tener este import
+import React, { Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css';
+import NavBar from './components/NavBar';
+
+
+// Importación de las páginas principales con carga diferida
+const Home = React.lazy(() => import('./pages/Home.jsx'));
+const QuoteCalculator = React.lazy(() => import('./pages/QuoteCalculator.jsx'));
 
 function App() {
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    // Simula un tiempo de carga al iniciar o cambiar la ruta
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 6000) // Ajusta según la duración de la animación
-
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
-    <>
-      {loading ? (
-        <Loader />
-      ) : (
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </BrowserRouter>
-      )}
-    </>
-  )
+    <Suspense fallback={null}> {/* Propiedad adicional para animar */}
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/event-calculator" element={<QuoteCalculator />} />
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
+  );
 }
 
-export default App
+export default App;

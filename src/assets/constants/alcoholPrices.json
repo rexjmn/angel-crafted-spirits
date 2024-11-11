@@ -1,0 +1,158 @@
+[
+    {
+      "product": "Vodka",
+      "brands": [
+        {
+          "name": "Tito's Handmade",
+          "price": 20.99,
+          "quality": "Standard"
+        },
+        {
+          "name": "Grey Goose",
+          "price": 34.99,
+          "quality": "Premium"
+        },
+        {
+          "name": "Belvedere",
+          "price": 38.99,
+          "quality": "Luxury"
+        }
+      ]
+    },
+    {
+      "product": "Gin",
+      "brands": [
+        {
+          "name": "Bombay Sapphire",
+          "price": 26.99,
+          "quality": "Standard"
+        },
+        {
+          "name": "Hendrick's",
+          "price": 39.99,
+          "quality": "Premium"
+        },
+        {
+          "name": "Monkey 47",
+          "price": 69.99,
+          "quality": "Luxury"
+        }
+      ]
+    },
+    {
+      "product": "Rum",
+      "brands": [
+        {
+          "name": "Bacardi Superior",
+          "price": 19.99,
+          "quality": "Standard"
+        },
+        {
+          "name": "Mount Gay Black Barrel",
+          "price": 29.99,
+          "quality": "Premium"
+        },
+        {
+          "name": "Ron Zacapa 23",
+          "price": 49.99,
+          "quality": "Luxury"
+        }
+      ]
+    },
+    {
+      "product": "Tequila",
+      "brands": [
+        {
+          "name": "Jose Cuervo Especial",
+          "price": 22.99,
+          "quality": "Standard"
+        },
+        {
+          "name": "Don Julio Blanco",
+          "price": 45.99,
+          "quality": "Premium"
+        },
+        {
+          "name": "Clase Azul Reposado",
+          "price": 99.99,
+          "quality": "Luxury"
+        }
+      ]
+    },
+    {
+      "product": "Whiskey",
+      "brands": [
+        {
+          "name": "Jack Daniel's Old No.7",
+          "price": 24.99,
+          "quality": "Standard"
+        },
+        {
+          "name": "Johnnie Walker Black",
+          "price": 34.99,
+          "quality": "Premium"
+        },
+        {
+          "name": "Macallan 12 Years",
+          "price": 69.99,
+          "quality": "Luxury"
+        }
+      ]
+    },
+    {
+      "product": "Triple Sec",
+      "brands": [
+        {
+          "name": "Cointreau",
+          "price": 35.99,
+          "quality": "Premium"
+        }
+      ]
+    },
+    {
+      "product": "Vermouth",
+      "brands": [
+        {
+          "name": "Martini & Rossi",
+          "price": 10.99,
+          "quality": "Standard"
+        },
+        {
+          "name": "Carpano Antica",
+          "price": 29.99,
+          "quality": "Premium"
+        }
+      ]
+    },
+    {
+      "product": "Coffee Liqueur",
+      "brands": [
+        {
+          "name": "Kahlúa",
+          "price": 22.99,
+          "quality": "Standard"
+        }
+      ]
+    },
+    {
+      "product": "Herbal Liqueur",
+      "brands": [
+        {
+          "name": "Jägermeister",
+          "price": 25.99,
+          "quality": "Standard"
+        }
+      ]
+    },
+    {
+      "product": "Amaretto",
+      "brands": [
+        {
+          "name": "Disaronno",
+          "price": 29.99,
+          "quality": "Premium"
+        }
+      ]
+    }
+  ]
+  

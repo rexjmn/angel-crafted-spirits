@@ -39,14 +39,14 @@ canvas {
   }
 
   .btn {
-    width: 140px;
-    height: 40px;
+    width: 150px;
+    height: 50px;
     border: none;
     border-radius: 10px;
     background: linear-gradient(to right,#77530a,#ffd277,#77530a,#77530a,#ffd277,#77530a);
     background-size: 250%;
     background-position: left;
-    color: #ffd277;
+    color: #fff349;
     position: relative;
     display: flex;
     align-items: center;
@@ -58,8 +58,8 @@ canvas {
   
   .btn::before {
     position: absolute;
-    content: "CONTACT ME";
-    color: #ffd277;
+    content: "Get in touch";
+    color: #e4ac3a;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -126,7 +126,7 @@ canvas {
   }
 
   .control-btn {
-    @apply ml-4 p-4 rounded-full bg-gray-300 backdrop-blur flex-center
+    @apply ml-4 p-4 rounded-full bg-[#eeba2b] backdrop-blur flex-center
   }
 
   .hero-title {

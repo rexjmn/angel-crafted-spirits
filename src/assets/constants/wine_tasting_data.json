@@ -1,0 +1,162 @@
+{
+    "wine_tasting": {
+        "wine_selection": {
+            "red_wine": [
+                {
+                    "brand": "Bogle Vineyards Merlot",
+                    "vintage": 2020,
+                    "quality": "Standard",
+                    "price": 15.99
+                },
+                {
+                    "brand": "Duckhorn Cabernet Sauvignon",
+                    "vintage": 2018,
+                    "quality": "Premium",
+                    "price": 50.99
+                },
+                {
+                    "brand": "Opus One",
+                    "vintage": 2017,
+                    "quality": "Luxury",
+                    "price": 350.99
+                }
+            ],
+            "white_wine_dry": [
+                {
+                    "brand": "Kim Crawford Sauvignon Blanc",
+                    "vintage": 2021,
+                    "quality": "Standard",
+                    "price": 18.99
+                },
+                {
+                    "brand": "Rombauer Chardonnay",
+                    "vintage": 2019,
+                    "quality": "Premium",
+                    "price": 40.99
+                },
+                {
+                    "brand": "Domaine Leflaive Puligny-Montrachet",
+                    "vintage": 2018,
+                    "quality": "Luxury",
+                    "price": 150.99
+                }
+            ],
+            "white_wine_sweet": [
+                {
+                    "brand": "Chateau Ste. Michelle Riesling",
+                    "vintage": 2020,
+                    "quality": "Standard",
+                    "price": 12.99
+                },
+                {
+                    "brand": "Dr. Loosen Wehlener Sonnenuhr Riesling Sp\u00e4tlese",
+                    "vintage": 2019,
+                    "quality": "Premium",
+                    "price": 30.99
+                },
+                {
+                    "brand": "Ch\u00e2teau d'Yquem Sauternes",
+                    "vintage": 2015,
+                    "quality": "Luxury",
+                    "price": 250.99
+                }
+            ],
+            "rose_wine": [
+                {
+                    "brand": "Whispering Angel Ros\u00e9",
+                    "vintage": 2020,
+                    "quality": "Standard",
+                    "price": 20.99
+                },
+                {
+                    "brand": "Domaines Ott Ch\u00e2teau de Selle Ros\u00e9",
+                    "vintage": 2019,
+                    "quality": "Premium",
+                    "price": 50.99
+                },
+                {
+                    "brand": "Ch\u00e2teau d'Esclans Garrus Ros\u00e9",
+                    "vintage": 2018,
+                    "quality": "Luxury",
+                    "price": 100.99
+                }
+            ],
+            "champagne": [
+                {
+                    "brand": "Mo\u00ebt & Chandon Brut Imperial",
+                    "vintage": "NV",
+                    "quality": "Standard",
+                    "price": 50.99
+                },
+                {
+                    "brand": "Veuve Clicquot La Grande Dame",
+                    "vintage": 2008,
+                    "quality": "Premium",
+                    "price": 150.99
+                },
+                {
+                    "brand": "Dom P\u00e9rignon P2 Pl\u00e9nitude",
+                    "vintage": 2002,
+                    "quality": "Luxury",
+                    "price": 400.99
+                }
+            ]
+        },
+        "appetizer_selection": {
+            "charcuterie_and_cheese": [
+                {
+                    "product": "Jam\u00f3n Serrano",
+                    "description": "Spanish cured ham, thinly sliced.",
+                    "price": 30.99
+                },
+                {
+                    "product": "Prosciutto",
+                    "description": "Italian cured ham, soft texture.",
+                    "price": 25.99
+                },
+                {
+                    "product": "Salami Toscano",
+                    "description": "Italian sausage with spices.",
+                    "price": 22.99
+                },
+                {
+                    "product": "Queso Manchego",
+                    "description": "Spanish sheep cheese, intense flavor.",
+                    "price": 25.99
+                },
+                {
+                    "product": "Queso Brie",
+                    "description": "French soft and creamy cheese.",
+                    "price": 20.99
+                },
+                {
+                    "product": "Aged Cheddar Cheese",
+                    "description": "English aged cheese, bold flavor.",
+                    "price": 28.99
+                }
+            ],
+            "nuts_and_dried_fruits": [
+                {
+                    "product": "Marcona Almonds",
+                    "description": "Spanish almonds, soft texture.",
+                    "price": 18.99
+                },
+                {
+                    "product": "Pecan Nuts",
+                    "description": "American nuts, sweet flavor.",
+                    "price": 16.99
+                },
+                {
+                    "product": "Dried Figs",
+                    "description": "Sweet, chewy texture.",
+                    "price": 14.99
+                },
+                {
+                    "product": "Medjool Dates",
+                    "description": "Large, juicy dates.",
+                    "price": 18.99
+                }
+            ]
+        }
+    }
+}
