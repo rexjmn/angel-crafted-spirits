@@ -1,8 +1,8 @@
-import cheers from './cheers.mp4';
-import cocktails from './cocktails.mp4';
-import serving from './serving.mp4';
-import Whisky from './Whisky.mp4';
-import cinammonfire from './cinammonfire.mp4';
+import cheers from './cheers.webm';
+import cocktails from './cocktails.webm';
+import serving from './serving.webm';
+import Whisky from './Whisky.webm';
+import cinammonfire from './cinammonfire.webm';
 
 export const hightlightsSlides = [
     {

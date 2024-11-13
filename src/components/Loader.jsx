@@ -6,7 +6,7 @@ const Loader = () => {
         <div
           key={index}
           className="absolute rounded-full border-2 border-white animate-pulse-circle"
-          style={{ animationDelay: `${index * 200}ms` }}
+          style={{ animationDelay: `${index * 100}ms` }}
         ></div>
       ))}
     </div>

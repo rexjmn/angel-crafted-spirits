@@ -1,7 +1,7 @@
 
 import Angel from './Angel.png';
 import AngelBlack from './AngelBlack.png';
-import heroVideo from './heroVideo.mp4';
+import heroVideo from './heroVideo.webm';
 import smallHeroVideo from './smallHeroVideo.mp4';;
 import SatyrScene from './satyr.glb';
 import playImg from './play.svg';
