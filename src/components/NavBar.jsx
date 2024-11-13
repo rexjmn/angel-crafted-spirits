@@ -20,8 +20,8 @@ const NavBar = () => {
     )
       .fromTo(
         logoRef.current,
-        { scale: 0.8, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.8 }
+        { scale: 0.5, opacity: 0, x: 50, y: 50 },
+        { scale: 1, opacity: 1, x: 0, y: 0, duration: 1 }
       )
       .fromTo(
         navItemsRef.current,

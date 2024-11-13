@@ -36,6 +36,6 @@ const Satyr = (props) => {
   )
 }
 
-useGLTF.preload('/young_satyr_drinking_wine.glb')
+useGLTF.preload(SatyrScene)
 
 export default Satyr;

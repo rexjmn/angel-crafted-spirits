@@ -1,66 +1,56 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import JackScene from '../assets/images/jack.glb';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const BottleJack = ({ sectionId, ...props }) => {
   const bottleRef = useRef();
   const { nodes, materials } = useGLTF(JackScene);
   const rotationSpeed = useRef(0);
-  const currentState = useRef(0);
 
-  useGSAP(() => {
+  useEffect(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: `#${sectionId}`,
-        start: "top top",
-        end: "+=300%",
+        start: 'top top',
+        end: '+=300%',
         scrub: 1,
         onUpdate: (self) => {
           const progress = self.progress;
-          // Ajustamos la velocidad de rotación según la sección
           if (progress < 0.33) {
             rotationSpeed.current = 0.3;
-            currentState.current = 1;
           } else if (progress < 0.66) {
             rotationSpeed.current = 0.6;
-            currentState.current = 2;
           } else {
             rotationSpeed.current = 0.3;
-            currentState.current = 3;
           }
-        }
-      }
+        },
+      },
     });
 
-    // Animaciones más suaves y centradas
-    tl.fromTo(bottleRef.current.scale,
+    // Configuración de las animaciones de escala y rotación con GSAP
+    tl.fromTo(
+      bottleRef.current.scale,
       { x: 1, y: 1, z: 1 },
-      { x: 2, y: 2, z: 2, duration: 1.5, ease: "power2.inOut" }
+      { x: 2, y: 2, z: 2, duration: 1.5, ease: 'power2.inOut' }
     )
-    .to(bottleRef.current.rotation,
-      { y: Math.PI * 2, duration: 2.5, ease: "power2.inOut" }
-    )
-    .to(bottleRef.current.scale,
-      { x: 2.5, y: 2.5, z: 2.5, duration: 2, ease: "power2.inOut" },
-      "-=1"
-    )
-    .to(bottleRef.current.rotation,
-      { y: Math.PI * 4, duration: 2.5, ease: "power2.inOut" }
-    )
-    .to(bottleRef.current.scale,
-      { x: 1.8, y: 1.8, z: 1.8, duration: 2, ease: "power2.inOut" },
-      "-=1"
-    );
+      .to(bottleRef.current.rotation, { y: Math.PI * 2, duration: 2.5, ease: 'power2.inOut' })
+      .to(bottleRef.current.scale, { x: 2.5, y: 2.5, z: 2.5, duration: 2, ease: 'power2.inOut' }, '-=1')
+      .to(bottleRef.current.rotation, { y: Math.PI * 4, duration: 2.5, ease: 'power2.inOut' })
+      .to(bottleRef.current.scale, { x: 1.8, y: 1.8, z: 1.8, duration: 2, ease: 'power2.inOut' }, '-=1');
 
+    // Limpiar el timeline y el trigger al desmontar
     return () => {
       tl.kill();
+      ScrollTrigger.getById(`trigger-${sectionId}`)?.kill();
     };
   }, [sectionId]);
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (bottleRef.current) {
       bottleRef.current.rotation.y += delta * rotationSpeed.current;
     }
@@ -96,5 +86,7 @@ const BottleJack = ({ sectionId, ...props }) => {
   );
 };
 
+// Preload the GLTF model to optimize initial loading
 useGLTF.preload(JackScene);
+
 export default BottleJack;
