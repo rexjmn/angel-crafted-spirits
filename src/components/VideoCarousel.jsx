@@ -143,7 +143,7 @@ const VideoSlide = memo(({ slide, videoRef, textDesRef, handleProcess, handleLoa
           onPause={() => gsap.to(textDesRef.current[i], { opacity: 0, duration: 2 })}
           onLoadedMetadata={(e) => handleLoadedMetadata(i, e)}
         >
-          <source src={slide.video} type="video/mp4" />
+          <source src={slide.video} type="video/webm" />
         </video>
         <div ref={(el) => (textDesRef.current[i] = el)} className="video-description absolute top-1/2 left-5 opacity-0 bg-opacity-20 backdrop-blur-sm p-4 rounded">
           {slide.textLists.map((text, idx) => (

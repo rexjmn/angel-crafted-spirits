@@ -73,8 +73,8 @@ const VideoHero = ({ onLoadComplete }) => {
 
           <div ref={canvasRef} className="absolute w-full h-full top-0 opacity-0 flex items-center justify-center">
             <Canvas className="w-full h-full z-10" onCreated={() => setModelReady(true)}>
-              <ambientLight intensity={2} />
-              <directionalLight position={[100, -50, 5]} intensity={20} />
+              <ambientLight intensity={3} />
+              <directionalLight position={[100, -50, 5]} intensity={5} />
               {satyrModel}
               <OrbitControls enablePan={false} enableZoom={false} autoRotate autoRotateSpeed={0.5} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
             </Canvas>
