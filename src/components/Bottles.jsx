@@ -4,7 +4,7 @@ import { OrbitControls, Preload } from '@react-three/drei';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import BottleJack from '../models3D/BottleJack';
-import BottlesMobile from './BottlesMobile';
+import BottlesMobile from './mobile/BottlesMobile';
 
 gsap.registerPlugin(ScrollTrigger);
 
