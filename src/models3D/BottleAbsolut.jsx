@@ -15,7 +15,7 @@ const BottleAbsolut = (props) => {
   const { nodes, materials } = useGLTF(AbsolutScene)
   return (
     <a.group {...props} dispose={null}>
-      <group scale={0.01}>
+      <group scale={0.2}>
         <mesh
           castShadow
           receiveShadow

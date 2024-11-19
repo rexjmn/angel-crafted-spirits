@@ -79,7 +79,7 @@ const Newsletter = () => {
       />
       
       <div className="bg-black bg-opacity-60 p-6 sm:p-8 md:p-12 rounded-lg text-center max-w-3xl w-full relative z-10">
-        <h2 className="newsletter-title text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 md:mb-8 font-serif">
+        <h2 className="newsletter-title text-3xl sm:text-4xl md:text-5xl font-bold text-[#f0d85e] mb-4 sm:mb-6 md:mb-8 font-serif">
           Stay Updated with Our Newsletter
         </h2>
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
@@ -89,7 +89,7 @@ const Newsletter = () => {
             className="newsletter-input px-4 sm:px-5 py-2 sm:py-3 rounded-lg text-gray-800 outline-none focus:ring-2 ring-indigo-400 w-full sm:w-auto"
           />
           <button
-            className="newsletter-button px-5 sm:px-6 md:px-8 py-2 sm:py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300 w-full sm:w-auto"
+            className="mt-8 px-6 py-2 text-lg bg-[#f0d85e] text-black rounded-full shadow-md hover:bg-[#e1c340] hover:shadow-xl transition duration-300"
           >
             Subscribe
           </button>

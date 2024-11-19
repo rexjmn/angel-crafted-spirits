@@ -14,55 +14,46 @@ const VideoHero = ({ onLoadComplete }) => {
   const [videoReady, setVideoReady] = useState(false);
   const [modelReady, setModelReady] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const isMobile = window.innerWidth <= 768;
 
   // Debugging logs for state changes
   useEffect(() => {
-    console.log('isMobile:', isMobile);
     console.log('videoReady:', videoReady);
     console.log('modelReady:', modelReady);
     console.log('isLoaded:', isLoaded);
-  }, [isMobile, videoReady, modelReady, isLoaded]);
+  }, [videoReady, modelReady, isLoaded]);
 
   // Handle when all assets are ready
   useEffect(() => {
-    if (videoReady && (isMobile || modelReady) && !isLoaded) {
+    if (videoReady && modelReady && !isLoaded) {
       console.log('All assets loaded, calling onLoadComplete');
       setIsLoaded(true);
       if (onLoadComplete) onLoadComplete();
     }
-  }, [videoReady, modelReady, isMobile, isLoaded, onLoadComplete]);
+  }, [videoReady, modelReady, isLoaded, onLoadComplete]);
 
-  // Fallback mechanism for desktop in case `modelReady` doesn't trigger
+  // Fallback mechanism for model readiness
   useEffect(() => {
-    if (!isMobile) {
-      const timeout = setTimeout(() => {
-        if (!modelReady) {
-          console.warn('Fallback: Setting modelReady to true');
-          setModelReady(true);
-        }
-      }, 5000);
+    const timeout = setTimeout(() => {
+      if (!modelReady) {
+        console.warn('Fallback: Setting modelReady to true');
+        setModelReady(true);
+      }
+    }, 5000);
 
-      return () => clearTimeout(timeout);
-    }
-  }, [isMobile, modelReady]);
+    return () => clearTimeout(timeout);
+  }, [modelReady]);
 
   // Memoized Satyr model to avoid unnecessary re-renders
-  const satyrModel = useMemo(() => {
-    if (!isMobile) {
-      return (
-        <Satyr
-          position={[0, -9.5, -1]}
-          scale={6.7}
-          onReady={() => {
-            console.log('Satyr model is ready');
-            setModelReady(true);
-          }}
-        />
-      );
-    }
-    return null;
-  }, [isMobile]);
+  const satyrModel = useMemo(() => (
+    <Satyr
+      position={[0, -9.5, -1]}
+      scale={6.7}
+      onReady={() => {
+        console.log('Satyr model is ready');
+        setModelReady(true);
+      }}
+    />
+  ), []);
 
   // Video loaded callback
   useEffect(() => {
@@ -85,7 +76,7 @@ const VideoHero = ({ onLoadComplete }) => {
           tl.fromTo(
             flameRef.current,
             { opacity: 0 },
-            { opacity: 1, duration: isMobile ? 0.5 : 1.5, ease: 'power1.inOut' }
+            { opacity: 1, duration: 1, ease: 'power1.in' }
           );
         }
 
@@ -93,7 +84,7 @@ const VideoHero = ({ onLoadComplete }) => {
           tl.fromTo(
             heroRef.current,
             { opacity: 0 },
-            { opacity: 1, duration: isMobile ? 0.5 : 1, ease: 'power1.inOut' }
+            { opacity: 1, duration: 1, ease: 'power1.inOut' }
           );
         }
 
@@ -101,12 +92,12 @@ const VideoHero = ({ onLoadComplete }) => {
           tl.fromTo(
             ctaRef.current,
             { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: isMobile ? 0.5 : 1, ease: 'power1.out' },
+            { opacity: 1, y: 0, duration: 1, ease: 'power1.out' },
             '-=0.3'
           );
         }
 
-        if (!isMobile && canvasRef.current) {
+        if (canvasRef.current) {
           tl.fromTo(
             canvasRef.current,
             { opacity: 0 },
@@ -118,7 +109,7 @@ const VideoHero = ({ onLoadComplete }) => {
 
       return () => ctx.revert();
     }
-  }, [videoReady, isMobile]);
+  }, [videoReady]);
 
   return (
     <div className={`relative h-screen w-full ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
@@ -130,33 +121,31 @@ const VideoHero = ({ onLoadComplete }) => {
             </p>
           </div>
 
-          {!isMobile && (
-            <div ref={canvasRef} className="absolute w-full h-full top-0 opacity-0 flex items-center justify-center">
-              <Canvas
-                className="w-full h-full z-10"
-                onCreated={() => {
-                  console.log('Canvas created');
-                }}
-              >
-                <ambientLight intensity={2} />
-                <directionalLight position={[100, -50, 5]} intensity={4} />
-                {satyrModel}
-                <OrbitControls
-                  enablePan={false}
-                  enableZoom={false}
-                  autoRotate={!isMobile}
-                  autoRotateSpeed={0.3}
-                  maxPolarAngle={Math.PI / 2}
-                  minPolarAngle={Math.PI / 2}
-                />
-              </Canvas>
-            </div>
-          )}
+          <div ref={canvasRef} className="absolute w-full h-full top-0 opacity-0 flex items-center justify-center">
+            <Canvas
+              className="w-full h-full z-10"
+              onCreated={() => {
+                console.log('Canvas created');
+              }}
+            >
+              <ambientLight intensity={2} />
+              <directionalLight position={[100, -50, 5]} intensity={4} />
+              {satyrModel}
+              <OrbitControls
+                enablePan={false}
+                enableZoom={false}
+                autoRotate
+                autoRotateSpeed={0.3}
+                maxPolarAngle={Math.PI / 2}
+                minPolarAngle={Math.PI / 2}
+              />
+            </Canvas>
+          </div>
         </div>
 
         {isLoaded && (
           <div ref={ctaRef} className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10">
-            <a href="#highlights" className="btn mb-4">
+            <a href="/contact" className="btn mb-4">
               Contact
             </a>
             <p className="font-normal text-xl">Make a Reservation</p>

@@ -89,7 +89,7 @@ const Bottles = ({ sectionId, ...props }) => {
       .fromTo(
         section1Ref.current,
         { x: 0, opacity: 0, scale: 0.9 },
-        { x: 300, opacity: 1, scale: 1, duration: 1.5, ease: 'power2.out' }
+        { x: 100, opacity: 1, scale: 1, duration: 1.5, ease: 'power2.out' }
       )
       .to(
         section1Ref.current,
