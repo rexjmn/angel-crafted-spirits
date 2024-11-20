@@ -34,7 +34,7 @@ function Packages() {
 
       </div>
 
-      <div
+      {/* <div
   className="my-12 p-8 relative top-[-250px] left-[-350px] z-10  text-center bg-gradient-to-r from-black via-gray-900 to-black backdrop-blur-lg flex flex-wrap items-center justify-center rounded-xl shadow-2xl max-w-3xl mx-auto"
   style={{
     boxShadow: '0px 15px 40px rgba(0, 0, 0, 0.6)',
@@ -67,13 +67,13 @@ function Packages() {
   >
     Contact Us
   </button>
-</div>
+</div> */}
 
 <div className="absolute top-[50%] left-[20%] transform -translate-x-1/2 "
  data-aos="fade-down"
  >
             <p className="text-white text-center text-4xl md:text-5xl font-bold font-[Rye]">
-              Elevating Spirits, <br /> Crafting Experience
+              COMING <br /> SOON...
             </p>
           </div>
 
