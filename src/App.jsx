@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-
+import NavBar from './components/NavBar';
 import Loader from './components/Loader'; // Custom Loader Component
 
 // Lazy imports for pages
@@ -14,7 +14,7 @@ function App() {
   return (
     <BrowserRouter>
       <Suspense fallback={<Loader />}> {/* Show Loader while waiting for lazy-loaded components */}
- 
+        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/event-calculator" element={<QuoteCalculator />} />

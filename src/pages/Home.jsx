@@ -2,7 +2,7 @@ import React, { useEffect, useState, Suspense } from 'react';
 import VideoHero from '../components/VideoHero';
 import HighLights from '../components/HighLights';
 import Bottles from '../components/Bottles';
-import NavBar from '../components/NavBar';
+
 import ErrorBoundary from '../components/ErrorBoundary';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
@@ -27,7 +27,7 @@ const Home = () => {
 
   return (
     <div>
-      <NavBar />
+
       {/* Video Hero Section */}
       <VideoHero onLoadComplete={() => setIsVideoHeroLoaded(true)} />
 

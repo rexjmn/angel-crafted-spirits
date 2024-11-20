@@ -97,8 +97,8 @@ const VideoHero = ({ onLoadComplete }) => {
           {/* 3D Model */}
           <div ref={canvasRef} className="absolute w-full h-full top-0 opacity-0 flex items-center justify-center">
             <Canvas className="w-full h-full z-10">
-              <ambientLight intensity={1.5} />
-              <directionalLight position={[50, -30, 10]} intensity={2} />
+              <ambientLight intensity={2} />
+              <directionalLight position={[50, -10, 10]} intensity={2} />
               {satyrModel}
               <OrbitControls
                 enablePan={false}
