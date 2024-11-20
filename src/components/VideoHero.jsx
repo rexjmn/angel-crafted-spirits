@@ -11,64 +11,37 @@ const VideoHero = ({ onLoadComplete }) => {
   const flameRef = useRef(null);
   const canvasRef = useRef(null);
 
-  const [videoReady, setVideoReady] = useState(false);
-  const [modelReady, setModelReady] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Debugging logs for state changes
-  useEffect(() => {
-    console.log('videoReady:', videoReady);
-    console.log('modelReady:', modelReady);
-    console.log('isLoaded:', isLoaded);
-  }, [videoReady, modelReady, isLoaded]);
-
-  // Handle when all assets are ready
-  useEffect(() => {
-    if (videoReady && modelReady && !isLoaded) {
-      console.log('All assets loaded, calling onLoadComplete');
-      setIsLoaded(true);
-      if (onLoadComplete) onLoadComplete();
-    }
-  }, [videoReady, modelReady, isLoaded, onLoadComplete]);
-
-  // Fallback mechanism for model readiness
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!modelReady) {
-        console.warn('Fallback: Setting modelReady to true');
-        setModelReady(true);
-      }
-    }, 5000);
-
-    return () => clearTimeout(timeout);
-  }, [modelReady]);
-
-  // Memoized Satyr model to avoid unnecessary re-renders
+  // Memoized Satyr model
   const satyrModel = useMemo(() => (
     <Satyr
       position={[0, -9.5, -1]}
       scale={6.7}
       onReady={() => {
         console.log('Satyr model is ready');
-        setModelReady(true);
+        setIsLoaded(true);
+        if (onLoadComplete) onLoadComplete();
       }}
     />
-  ), []);
+  ), [onLoadComplete]);
 
   // Video loaded callback
   useEffect(() => {
     const video = flameRef.current;
     if (video) {
+      video.preload = 'auto';
       video.onloadeddata = () => {
         console.log('Video is ready');
-        setVideoReady(true);
+        setIsLoaded(true);
+        if (onLoadComplete) onLoadComplete();
       };
     }
-  }, []);
+  }, [onLoadComplete]);
 
   // GSAP animations
   useEffect(() => {
-    if (videoReady) {
+    if (isLoaded) {
       const ctx = gsap.context(() => {
         const tl = gsap.timeline();
 
@@ -92,8 +65,7 @@ const VideoHero = ({ onLoadComplete }) => {
           tl.fromTo(
             ctaRef.current,
             { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 1, ease: 'power1.out' },
-            '-=0.3'
+            { opacity: 1, y: 0, duration: 1, ease: 'power1.out' }
           );
         }
 
@@ -105,37 +77,34 @@ const VideoHero = ({ onLoadComplete }) => {
             '-=0.5'
           );
         }
-      }, [heroRef, ctaRef, flameRef, canvasRef]);
+      });
 
       return () => ctx.revert();
     }
-  }, [videoReady]);
+  }, [isLoaded]);
 
   return (
-    <div className={`relative h-screen w-full ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+    <div className="relative h-screen w-full">
       <div className="h-full w-full flex flex-col items-center justify-center relative z-10">
         <div className="flex items-center justify-center w-full h-full">
+          {/* Hero Text */}
           <div ref={heroRef} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 opacity-0 -translate-y-1/2 z-20">
             <p className="text-white text-center text-4xl md:text-5xl font-bold font-[Rye]">
               Elevating Spirits, <br /> Crafting Experience
             </p>
           </div>
 
+          {/* 3D Model */}
           <div ref={canvasRef} className="absolute w-full h-full top-0 opacity-0 flex items-center justify-center">
-            <Canvas
-              className="w-full h-full z-10"
-              onCreated={() => {
-                console.log('Canvas created');
-              }}
-            >
-              <ambientLight intensity={2} />
-              <directionalLight position={[100, -50, 5]} intensity={4} />
+            <Canvas className="w-full h-full z-10">
+              <ambientLight intensity={1.5} />
+              <directionalLight position={[50, -30, 10]} intensity={2} />
               {satyrModel}
               <OrbitControls
                 enablePan={false}
                 enableZoom={false}
                 autoRotate
-                autoRotateSpeed={0.3}
+                autoRotateSpeed={0.1}
                 maxPolarAngle={Math.PI / 2}
                 minPolarAngle={Math.PI / 2}
               />
@@ -143,8 +112,12 @@ const VideoHero = ({ onLoadComplete }) => {
           </div>
         </div>
 
+        {/* Call-to-Action */}
         {isLoaded && (
-          <div ref={ctaRef} className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-10">
+          <div
+            ref={ctaRef}
+            className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex opacity-0 flex-col items-center z-10"
+          >
             <a href="/contact" className="btn mb-4">
               Contact
             </a>
@@ -153,7 +126,16 @@ const VideoHero = ({ onLoadComplete }) => {
         )}
       </div>
 
-      <video ref={flameRef} autoPlay muted loop playsInline className="absolute top-0 right-0 w-full h-full object-cover z-0 opacity-0 transition-opacity duration-500">
+      {/* Background Video */}
+      <video
+        ref={flameRef}
+        autoPlay
+        muted
+        preload="auto"
+        loop
+        playsInline
+        className="absolute top-0 right-0 w-full h-full object-cover z-0 opacity-0 transition-opacity duration-500"
+      >
         <source src={heroVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>

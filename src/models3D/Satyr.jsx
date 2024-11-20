@@ -19,7 +19,7 @@ const Satyr = (props) => {
   // Rotación animada sobre el eje Y para que el modelo gire en su propio eje
   useFrame(() => {
     if (groupRef.current) {
-      groupRef.current.rotation.y += 0.0001; // Gira suavemente sobre el eje Y
+      groupRef.current.rotation.y += 0.0005; // Gira suavemente sobre el eje Y
     }
   });
 
