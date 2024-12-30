@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
 import Loader from './components/Loader'; // Custom Loader Component
+import * as Sentry from "@sentry/react";
 
 // Lazy imports for pages
 const Home = React.lazy(() => import('./pages/Home'));
@@ -26,4 +27,4 @@ function App() {
   );
 }
 
-export default App;
+export default Sentry.withProfiler (App);
