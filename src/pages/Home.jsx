@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+
 const Home = () => {
   const [isVideoHeroLoaded, setIsVideoHeroLoaded] = useState(false);
 
@@ -82,6 +83,7 @@ const Home = () => {
               <Bottles />
             </ErrorBoundary>
           </Suspense>
+
 
           {/* Newsletter and Footer */}
           <Newsletter />

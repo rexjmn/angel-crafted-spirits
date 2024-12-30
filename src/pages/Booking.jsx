@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import lila from '../assets/images/lila-mitchell.jpg';
 import Footer from '../components/Footer';
 import Aos from 'aos';
@@ -11,71 +12,153 @@ Aos.init({
 
 function Packages() {
   const [activePackage, setActivePackage] = useState(null);
+  const [selectedCocktails, setSelectedCocktails] = useState(null);
+  const navigate = useNavigate();
 
   const cocktailPackages = [
     {
       name: "Legendary Classic Cocktail Experience",
       shortName: "Timeless Mixology",
       description: "Embark on an extraordinary journey through the most iconic cocktails in mixology history. Where every sip tells a story of craftsmanship, tradition, and unparalleled flavor.",
-      price: "Starting at $300",
+      price: "$250",
       features: [
-        "10 hand-crafted classic cocktails",
+        "6 hand-crafted classic cocktails",
+        "Certified Master Bartender",
         "Designer crystal glassware",
-        "5-hour premium mixology session"
+        "2-hour premium mixology session"
       ],
       ideal: "Perfect for corporate events, cocktail enthusiasts, and those who appreciate the art of traditional mixology.",
       keyBenefits: [
         "Immersive cocktail storytelling",
         "Professional-grade mixology experience",
         "Authentic flavor profiles"
+      ],
+      cocktails: [
+        "Old Fashioned",
+        "Manhattan",
+        "Martini",
+        "Negroni",
+        "Whiskey Sour",
+        "Daiquiri"
       ]
     },
     {
       name: "Innovative Craft Cocktail Journey",
       shortName: "Creative Mixology",
       description: "Push the boundaries of flavor with our cutting-edge cocktail experience. A sensory adventure that transforms ordinary drinks into liquid art, challenging everything you know about mixology.",
-      price: "Starting at $350",
+      price: "$350",
       features: [
-        "15 exclusive artisan cocktails",
+        "8 exclusive artisan cocktails",
         "Specialized modern mixology expert",
         "Premium locally-sourced ingredients",
-        "5-hour innovative cocktail workshop"
+        "3-hour innovative cocktail workshop"
       ],
       ideal: "Designed for creative groups, culinary adventurers, and those seeking a unique gastronomic experience.",
       keyBenefits: [
         "Innovative flavor combinations",
         "Cutting-edge mixology techniques",
         "Personalized cocktail creation"
+      ],
+      cocktails: [
+        "Smoky Mezcal Sour",
+        "Lavender Gin Fizz",
+        "Spicy Passion Fruit Margarita",
+        "Green Tea Martini",
+        "Beet and Basil Mojito",
+        "Coconut Rum Espresso Martini",
+        "Yuzu Sake Spritz",
+        "Elderflower Paloma"
       ]
     },
     {
       name: "Ultimate VIP Cocktail Extravaganza",
       shortName: "Elite Mixology Experience",
       description: "The pinnacle of cocktail luxury. A bespoke journey that transcends ordinary drinking, offering an unparalleled, personalized experience that redefines the art of mixology.",
-      price: " Starting at $500",
+      price: "$500",
       features: [
         "10 limited edition signature cocktails",
         "International award-winning mixologist",
         "Exclusive imported rare ingredients",
-        "5-hour full-service personalized mixology experience"
+        "4-hour full-service personalized mixology experience"
       ],
       ideal: "Exclusively designed for luxury events, special celebrations, and discerning clients seeking the ultimate cocktail experience.",
       keyBenefits: [
         "Personalized cocktail curation",
         "World-class mixology expertise",
         "Unmatched luxury experience"
+      ],
+      cocktails: [
+        "Truffle-Infused Old Fashioned",
+        "Gold Leaf Champagne Cocktail",
+        "Aged Rum Sazerac",
+        "Saffron and Rose Gin Fizz",
+        "Caviar Martini",
+        "Black Garlic Bloody Mary",
+        "Chocolate and Chili Negroni",
+        "Smoked Pineapple Mezcal Margarita",
+        "Earl Grey Tea-Infused Bourbon Sour",
+        "Rare Single Malt Whiskey Smash"
       ]
     }
   ];
 
+  const handleShowCocktails = (cocktails) => {
+    setSelectedCocktails(cocktails);
+  };
+
+  const handleCloseCocktails = () => {
+    setSelectedCocktails(null);
+  };
+
+  const handleBooking = () => {
+    navigate('/reservations');
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
+      {/* Background Image */}
       <div 
         className="fixed inset-0 bg-cover bg-center opacity-30 z-0"
         style={{
           backgroundImage: `url(${lila})`,
         }}
       />
+
+      {/* Cocktail List Popup */}
+      {selectedCocktails && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+          <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 max-w-md w-full">
+            <h2 className="text-2xl font-bold text-[#f0d85e] mb-4">Included Cocktails</h2>
+            <ul className="space-y-2 text-white/80 max-h-96 overflow-y-auto">
+              {selectedCocktails.map((cocktail, index) => (
+                <li key={index} className="flex items-center">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-5 w-5 text-[#f0d85e] mr-2" 
+                    viewBox="0 0 20 20" 
+                    fill="currentColor"
+                  >
+                    <path 
+                      fillRule="evenodd" 
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" 
+                      clipRule="evenodd" 
+                    />
+                  </svg>
+                  {cocktail}
+                </li>
+              ))}
+            </ul>
+            <div className="flex justify-end mt-6 space-x-4">
+              <button 
+                onClick={handleCloseCocktails}
+                className="py-2 px-4 bg-white/20 text-white rounded-full hover:bg-white/30 transition duration-300"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <main className="relative z-10 flex-grow container mx-auto px-4 py-16 md:py-24">
         <h1 
@@ -84,6 +167,11 @@ function Packages() {
         >
           Exclusive Cocktail Packages
         </h1>
+
+        {/* Disclaimer */}
+        <div className="text-center text-white/70 mb-8 italic">
+          Note: Packages include bartender service only. Alcohol, ingredients, and glassware are not included and must be purchased separately.
+        </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {cocktailPackages.map((pkg, index) => (
@@ -150,11 +238,20 @@ function Packages() {
                 </ul>
               </div>
               
-              <button 
-                className="w-full py-3 bg-[#f0d85e] text-black font-bold rounded-full hover:bg-[#ffd700] transition duration-300 uppercase tracking-wider"
-              >
-                Book Your Experience
-              </button>
+              <div className="flex space-x-4">
+                <button 
+                  onClick={() => handleShowCocktails(pkg.cocktails)}
+                  className="flex-1 py-3 bg-white/20 text-white font-bold rounded-full hover:bg-white/30 transition duration-300 uppercase tracking-wider"
+                >
+                  View Cocktails
+                </button>
+                <button 
+                  onClick={handleBooking}
+                  className="flex-1 py-3 bg-[#f0d85e] text-black font-bold rounded-full hover:bg-[#ffd700] transition duration-300 uppercase tracking-wider"
+                >
+                  Book Experience
+                </button>
+              </div>
             </div>
           ))}
         </div>

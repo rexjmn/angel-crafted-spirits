@@ -3,30 +3,35 @@ import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { visualizer } from 'rollup-plugin-visualizer';
 import viteCompression from 'vite-plugin-compression';
+import dotenv from 'dotenv';
 
+// Cargar las variables de entorno según el modo
 export default defineConfig(({ mode }) => {
+    // Cargar el archivo .env correspondiente al modo (por ejemplo, .env.production)
+    const env = dotenv.config({ path: `.env.${mode}` }).parsed || dotenv.config().parsed;
+
+    // Convertir las variables de entorno en un objeto accesible en la configuración
+    const envWithPrefix = Object.entries(env || {}).reduce((acc, [key, value]) => {
+        acc[`process.env.${key}`] = JSON.stringify(value);
+        return acc;
+    }, {});
+
     const isProduction = mode === 'production';
 
     return {
         plugins: [
             react(),
-
-            // Activa el visualizador solo en desarrollo
             !isProduction &&
                 visualizer({
-                    open: true, // Abre el análisis en el navegador
-                    filename: 'bundle-analysis.html', // Archivo de salida del reporte
-                    template: 'treemap', // Tipo de visualización: treemap, sunburst, network
+                    open: true,
+                    filename: 'bundle-analysis.html',
+                    template: 'treemap',
                 }),
-
-            // Activa viteCompression solo en producción
             isProduction && viteCompression({ algorithm: 'brotliCompress' }),
-        ].filter(Boolean), // Filtra valores falsos para evitar errores
+        ].filter(Boolean),
 
-        // Asegura que la base sea '/'
         base: '/',
 
-        // Incluye todos los tipos de archivos necesarios
         assetsInclude: [
             '**/*.glb',
             '**/*.gltf',
@@ -34,12 +39,11 @@ export default defineConfig(({ mode }) => {
             '**/*.png',
             '**/*.jpg',
             '**/*.jpeg',
-            '**/*.mp4', // Añadido soporte para videos
-            '**/*.webm', // Añadido soporte para videos webm
-            '**/*.svg', // Añadido soporte para SVG
+            '**/*.mp4',
+            '**/*.webm',
+            '**/*.svg',
         ],
 
-        // Resolución de alias para importaciones más limpias
         resolve: {
             alias: {
                 '@': resolve(__dirname, 'src'),
@@ -48,17 +52,15 @@ export default defineConfig(({ mode }) => {
             },
         },
 
-        // Configuración de build optimizada
         build: {
             outDir: 'dist',
             assetsDir: 'assets',
             sourcemap: true,
             minify: 'esbuild',
-            emptyOutDir: true, // Limpia el directorio de salida antes de build
+            emptyOutDir: true,
 
             rollupOptions: {
                 output: {
-                    // Organización de archivos por tipo
                     assetFileNames: (assetInfo) => {
                         let extType = assetInfo.name.split('.').at(1);
                         if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
@@ -70,28 +72,22 @@ export default defineConfig(({ mode }) => {
                         }
                         return `assets/${extType}/[name]-[hash][extname]`;
                     },
-
-                    // División de chunks
                     manualChunks: {
                         vendor: ['react', 'react-dom'],
                         three: ['three'],
                         gsap: ['gsap'],
                     },
-
-                    // Nombres de archivos consistentes
                     chunkFileNames: 'assets/js/[name]-[hash].js',
                     entryFileNames: 'assets/js/[name]-[hash].js',
                 },
             },
 
-            // Configuraciones de optimización
             target: 'es2018',
             cssCodeSplit: true,
             cssTarget: 'chrome61',
             assetsInlineLimit: 4096,
         },
 
-        // Configuración del servidor de desarrollo
         server: {
             port: 3000,
             strictPort: true,
@@ -99,18 +95,21 @@ export default defineConfig(({ mode }) => {
             open: true,
         },
 
-        // Optimización de dependencias
         optimizeDeps: {
             include: ['react', 'react-dom', 'three', 'gsap'],
             exclude: [],
         },
 
-        // Configuración de preview
         preview: {
             port: 4173,
             strictPort: true,
             host: true,
             open: true,
+        },
+
+        // Añade las variables de entorno al objeto define
+        define: {
+            ...envWithPrefix,
         },
     };
 });

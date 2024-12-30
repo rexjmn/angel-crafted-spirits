@@ -72,9 +72,9 @@ const CocktailCalculator = () => {
           onChange={(e) => setSelectedPackage(e.target.value)}
           className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-600 bg-black bg-opacity-60 text-white focus:outline-none focus:ring-[#e1c340] focus:border-[#e1c340] sm:text-sm rounded-md"
         >
-          <option value="classic">Classic Package (Basic Cocktails)</option>
-          <option value="mixed">Mixed Package (Basic + Elaborate Cocktails)</option>
-          <option value="vip">VIP Package (High-End Cocktails)</option>
+          <option value="classic">Legendary Classic Cocktail Experience (Basic)</option>
+          <option value="mixed">Innovative Craft Cocktail Journey (Elaborate Cocktails)</option>
+          <option value="vip">Ultimate VIP Cocktail Extravaganza (High-End Cocktails)</option>
         </select>
       </div>
 

@@ -1,112 +1,88 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import emailjs from 'emailjs-com';
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+const ContactForm = () => {
+  const form = useRef();
+  const [showPopup, setShowPopup] = useState(false); // Estado para el popup
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        form.current,
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log('Correo enviado con éxito:', result.text);
+          setShowPopup(true); // Mostrar el popup
+          e.target.reset(); // Limpia el formulario después de enviarlo
         },
-        body: JSON.stringify(formData)
-      });
+        (error) => {
+          console.error('Error al enviar el correo:', error.text);
+          alert('Hubo un problema al enviar tu mensaje. Por favor, inténtalo nuevamente.');
+        }
+      );
+  };
 
-      if (response.ok) {
-        alert('Message sent successfully!');
-        setFormData({
-          name: '',
-          email: '',
-          message: ''
-        });
-      } else {
-        alert('Failed to send message. Please try again.');
-      }
-    } catch (error) {
-      console.error('Submission error:', error);
-      alert('An error occurred. Please try again.');
-    }
+  const closePopup = () => {
+    setShowPopup(false); // Cierra el popup
   };
 
   return (
-    <div
-      className="flex flex-col lg:flex-row h-screen p-6 lg:p-10 bg-gradient-to-r from-black via-gray-900 to-black text-white"
-      style={{
-        boxShadow: '0px 15px 40px rgba(0, 0, 0, 0.6)',
-      }}
-    >
-      <div className="lg:w-full flex flex-col justify-center items-start space-y-8 max-w-3xl mx-auto">
-        <h1
-          className="text-5xl font-serif font-bold text-[#f0d85e] mb-4"
-          data-aos="fade-up"
+    <div className="relative">
+      <form ref={form} onSubmit={sendEmail} className="flex flex-col space-y-4">
+        <input
+          type="text"
+          name="user_name"
+          placeholder="Name"
+          required
+          className="p-3 bg-black/50 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring focus:ring-[#f0d85e]"
+        />
+        <input
+          type="email"
+          name="user_email"
+          placeholder="Email"
+          required
+          className="p-3 bg-black/50 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring focus:ring-[#f0d85e]"
+        />
+        <textarea
+          name="message"
+          placeholder="Your message"
+          rows="5"
+          required
+          className="p-3 bg-black/50 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring focus:ring-[#f0d85e]"
+        ></textarea>
+        <button
+          type="submit"
+          className="p-3 bg-[#f0d85e] text-black font-semibold rounded-lg hover:bg-yellow-500 transition duration-300"
         >
-          Contact Angel Crafted Spirits
-        </h1>
-        <h2
-          className="text-2xl font-medium text-white"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          Get in touch with us!
-        </h2>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col space-y-6 w-full"
-          data-aos="fade-up"
-          data-aos-delay="400"
-        >
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            className="border border-[#f0d85e] bg-black text-white rounded-lg px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-[#f0d85e] transition"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email Address"
-            value={formData.email}
-            onChange={handleChange}
-            className="border border-[#f0d85e] bg-black text-white rounded-lg px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-[#f0d85e] transition"
-            required
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            value={formData.message}
-            onChange={handleChange}
-            className="border border-[#f0d85e] bg-black text-white rounded-lg px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-[#f0d85e] transition"
-            rows="5"
-            required
-          />
-          <button
-            type="submit"
-            className="bg-[#f0d85e] text-black py-3 px-6 rounded-lg text-lg font-bold hover:bg-[#d1a830] transition duration-300 shadow-md hover:shadow-xl"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+          Send
+        </button>
+      </form>
+
+      {/* Popup de agradecimiento */}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center space-y-4">
+            <h2 className="text-2xl font-bold text-gray-800">¡Gracias por tu mensaje!</h2>
+            <p className="text-gray-600">
+              We appreciate your message and will get back to you as soon as possible.
+            </p>
+            <button
+              onClick={closePopup}
+              className="px-4 py-2 bg-[#f0d85e] text-black font-semibold rounded-lg hover:bg-yellow-500 transition duration-300"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default Contact;
+export default ContactForm;
