@@ -76,7 +76,7 @@ function Packages() {
         }}
       />
 
-      <main className="relative z-10 flex-grow container mx-auto px-4 py-16 md:py-44">
+      <main className="relative z-10 flex-grow container mx-auto px-4 py-44 md:py-44">
         <h1 
           className="text-5xl md:text-6xl font-bold  text-center mb-16 text-[#f0d85e] uppercase tracking-tight"
           data-aos="fade-down"
@@ -152,7 +152,8 @@ function Packages() {
               <button 
                 className="w-full py-3 bg-[#f0d85e] text-black font-bold rounded-full hover:bg-[#ffd700] transition duration-300 uppercase tracking-wider"
               >
-                Book Your Experience
+                <a href="./event-calculator">Book Your Experience</a>
+                
               </button>
             </div>
           ))}
