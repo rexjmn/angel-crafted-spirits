@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
+import Footer from '../components/Footer';
 import heroEvents from '../assets/images/heroEvents.mp4';
 
 const QuoteCalculator = () => {
@@ -57,7 +58,7 @@ const QuoteCalculator = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-black via-gray-900 to-black min-h-screen">
+    <div className="bg-gradient-to-br from-black via-gray-900  to-black min-h-screen">
       <section className="relative h-[500px] overflow-hidden">
         <video
           src={heroEvents}
@@ -67,7 +68,7 @@ const QuoteCalculator = () => {
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 z-10 flex items-center justify-center">
-          <div className="text-center px-4 max-w-3xl">
+          <div className="text-center px-4 py-44 max-w-3xl">
             <h1 className="text-5xl lg:text-6xl font-serif font-bold text-[#f0d85e] mb-6 drop-shadow-lg">
               Event Quote Calculator
             </h1>
@@ -199,6 +200,7 @@ const QuoteCalculator = () => {
           </form>
         </section>
       </div>
+      <Footer />
     </div>
   );
 };

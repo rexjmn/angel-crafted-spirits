@@ -55,7 +55,6 @@ function Packages() {
       price: " Starting at $500",
       features: [
         "10 limited edition signature cocktails",
-        "International award-winning mixologist",
         "Exclusive imported rare ingredients",
         "5-hour full-service personalized mixology experience"
       ],
@@ -77,9 +76,9 @@ function Packages() {
         }}
       />
 
-      <main className="relative z-10 flex-grow container mx-auto px-4 py-16 md:py-24">
+      <main className="relative z-10 flex-grow container mx-auto px-4 py-16 md:py-44">
         <h1 
-          className="text-5xl md:text-6xl font-bold text-center mb-16 text-[#f0d85e] uppercase tracking-tight"
+          className="text-5xl md:text-6xl font-bold  text-center mb-16 text-[#f0d85e] uppercase tracking-tight"
           data-aos="fade-down"
         >
           Exclusive Cocktail Packages
@@ -160,9 +159,9 @@ function Packages() {
         </div>
       </main>
 
-      <footer className="relative z-10">
+      
         <Footer />
-      </footer>
+    
     </div>
   );
 }

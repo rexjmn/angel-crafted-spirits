@@ -93,7 +93,7 @@ const Newsletter = () => {
           <div className="relative">
             <input
               type="email"
-              placeholder="Enter your email address"
+              placeholder="       Enter your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

@@ -12,9 +12,9 @@ AOS.init({
 
 const Contact = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white flex flex-col items-center py-20 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white flex flex-col items-center  lg:px-8">
       {/* Hero Section */}
-      <div className="w-full max-w-4xl text-center mb-12">
+      <div className="w-full max-w-4xl py-40 text-center mb-12">
         <h1
           className="text-5xl lg:text-6xl font-serif font-bold text-[#f0d85e] mb-6"
           data-aos="fade-down"
@@ -109,7 +109,7 @@ const Contact = () => {
       </div>
 
       {/* Footer */}
-      <div className="w-full mt-12">
+      <div className="w-screen  ">
         <Footer />
       </div>
     </div>
